@@ -1,3 +1,19 @@
+This is me trying to maintain a plugin I still use day to day.
+
+I already fixed a small thing. When I have time, I might look at the Pull requests and issues from the original project.
+
+## How to use
+Go to Releases and download the files.
+In your Obsidian folder there should be a folder with the name ".obsidian" (if you can't see this, you might want to enable hidden folders on your device).
+There you find the Folder "plugins". If you didn't already use this plugin, you need to create the folder "dbfolder".
+Now you can put the files from the release into this folder.
+Make shure you have this plugin enabled in Obsidian.
+Done :)
+
+
+
+--- OLD TEXT BELOW ---
+
 ## Database folder plugin
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/RafaelGB/obsidian-db-folder?style=for-the-badge&sort=semver)](https://github.com/RafaelGB/obsidian-db-folder/releases/latest)
 [![Github All Releases](https://img.shields.io/github/downloads/RafaelGB/obsidian-db-folder/total?style=for-the-badge)]()
