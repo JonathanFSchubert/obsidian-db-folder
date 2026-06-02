@@ -16,6 +16,7 @@ import {
   getFacetedRowModel,
   getFacetedMinMaxValues,
   getFacetedUniqueValues,
+  ColumnFiltersState,
 } from "@tanstack/react-table";
 import { TableDataType, RowDataType, TableColumn } from "cdm/FolderModel";
 import StateManager from "StateManager";
@@ -99,6 +100,7 @@ export function Table(tableData: TableDataType) {
   );
   // Filtering
   const [globalFilter, setGlobalFilter] = useState("");
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   // Resizing
   const [columnSizing, setColumnSizing] = useState(
     getInitialColumnSizing(columns)
@@ -142,12 +144,15 @@ export function Table(tableData: TableDataType) {
     columnResizeMode: ResizeConfiguration.RESIZE_MODE,
     state: {
       globalFilter: globalFilter,
+      columnFilters: columnFilters,
       columnOrder: columnOrder,
       columnSizing: columnSizing,
       sorting: sortBy,
       columnVisibility: columnVisibility,
     },
+    onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
+    onGlobalFilterChange: setGlobalFilter,
     onSortingChange: sortActions.alterSorting,
     onColumnSizingChange: (updater) => {
       const { isResizingColumn, deltaOffset, columnSizingStart } =
@@ -212,6 +217,12 @@ export function Table(tableData: TableDataType) {
   React.useEffect(() => {
     rowsActions.insertRows();
   }, []);
+
+  React.useEffect(() => {
+    if (table.getState().pagination.pageIndex !== 0) {
+      table.setPageIndex(0);
+    }
+  }, [globalFilter, columnFilters]);
 
   return (
     <>
